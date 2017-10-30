@@ -1,5 +1,7 @@
 package com.example.samsung.exchangerates.FirstFragmentPackage;
 
+import com.example.samsung.exchangerates.Data;
+
 import java.util.List;
 
 /**
@@ -7,5 +9,5 @@ import java.util.List;
  */
 
 public interface View {
-    void renderData(List dataList);
+    void renderData(List<Data> dataList);
 }

@@ -1,6 +1,5 @@
 package com.example.samsung.exchangerates.ChoiceFragmentPackage;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,9 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.samsung.exchangerates.CurrencyListFragmentPackage.CurrencyListFragment;
-import com.example.samsung.exchangerates.Data;
+import com.example.samsung.exchangerates.DataBaseCache;
 import com.example.samsung.exchangerates.DataCache;
-import com.example.samsung.exchangerates.MainActivity;
 import com.example.samsung.exchangerates.R;
 
 /**
@@ -23,7 +21,7 @@ public class ChoiceFragment extends Fragment {
 
     private Button chooseButton;
     private Button saveButton;
-    private Presenter presenter = new Presenter();
+    private ChoiceFragmentPresenter presenter = new ChoiceFragmentPresenter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,7 +52,7 @@ public class ChoiceFragment extends Fragment {
             public void onClick(View view) {
                 //Действия при нажатии на кнопку "SAVE"
                 presenter.addToDataList(DataCache.getInstance().choice);
-                presenter.addToDb(DataCache.getInstance().choice, ((MainActivity)getActivity()).db);
+                presenter.addToDb(DataCache.getInstance().choice, DataBaseCache.getInstance().db);
 
                 DataCache.getInstance().choice = null;
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

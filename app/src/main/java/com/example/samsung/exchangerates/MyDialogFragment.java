@@ -32,7 +32,7 @@ public class MyDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 Data d = DataCache.getInstance().dataList.remove(RVAdapter.getTag());
-                ((MainActivity)getActivity()).db.delete(TABLE, "currency == ?", new String[]{d.getCurrency()});
+                DataBaseCache.getInstance().db.delete(TABLE, "currency == ?", new String[]{d.getCurrency()});
                 ((FirstFragment)getFragmentManager().findFragmentById(R.id.fragmentContainer)).getAdapter().notifyDataSetChanged();
             getDialog().dismiss();
         }

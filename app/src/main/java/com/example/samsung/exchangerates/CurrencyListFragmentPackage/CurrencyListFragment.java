@@ -17,7 +17,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.samsung.exchangerates.DataCache;
-import com.example.samsung.exchangerates.MainActivity;
 import com.example.samsung.exchangerates.R;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class CurrencyListFragment extends Fragment implements com.example.samsun
 
     private ListView listView;
     private ArrayAdapter<String> adapter;
-    private Presenter presenter = new Presenter(this);
+    private CurrencyListFragmentPresenter presenter = new CurrencyListFragmentPresenter(this);
     private EditText editText;
 
     private List<String> listOfCurrencies = new ArrayList<>();

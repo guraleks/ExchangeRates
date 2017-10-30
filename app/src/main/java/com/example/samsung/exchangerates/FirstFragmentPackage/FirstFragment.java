@@ -1,6 +1,7 @@
 package com.example.samsung.exchangerates.FirstFragmentPackage;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,8 +13,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 
 import com.example.samsung.exchangerates.ChoiceFragmentPackage.ChoiceFragment;
-import com.example.samsung.exchangerates.DataCache;
-import com.example.samsung.exchangerates.MainActivity;
+import com.example.samsung.exchangerates.Data;
 import com.example.samsung.exchangerates.R;
 import com.example.samsung.exchangerates.RVAdapter;
 
@@ -25,33 +25,47 @@ import java.util.List;
 
 public class FirstFragment extends Fragment implements View{
 
+    android.view.View root;
+
     private RecyclerView rv;
-    private RecyclerView.Adapter adapter;
+    private RVAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private Presenter presenter;
+    private FirstFragmentPresenter presenter;
 
     public RecyclerView.Adapter getAdapter() {
         return adapter;
     }
 
     @Override
-    public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        android.view.View v = inflater.inflate(R.layout.first_fragment, container, false);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        rv = v.findViewById(R.id.rv);
-        presenter = new Presenter(this);
-
-        renderData(presenter.getDataList());
-
-        return v;
     }
 
     @Override
-    public void renderData(List dataList) {
+    public android.view.View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        root = inflater.inflate(R.layout.first_fragment, container, false);
+        return root;
+    }
+
+    @Override
+    public void onViewCreated(android.view.View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        rv = root.findViewById(R.id.rv);
         layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         rv.setLayoutManager(layoutManager);
-        adapter = new RVAdapter(dataList, getFragmentManager().findFragmentById(R.id.fragmentContainer));
+        adapter = new RVAdapter(getFragmentManager().findFragmentById(R.id.fragmentContainer));
         rv.setAdapter(adapter);
+
+        presenter = new FirstFragmentPresenter(this);
+        presenter.initHandler();
+        presenter.initDataFromDb();
+    }
+
+    @Override
+    public void renderData(List<Data> dataList) {
+        adapter.setData(dataList);
     }
 
 

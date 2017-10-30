@@ -8,11 +8,11 @@ import java.util.List;
  * Created by Samsung on 24.10.2017.
  */
 
-public class Presenter {
+public class CurrencyListFragmentPresenter {
 
     View view;
 
-    public Presenter(View view) {
+    public CurrencyListFragmentPresenter(View view) {
         this.view = view;
     }
 

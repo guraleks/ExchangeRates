@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
-    private List<Data> dataList;
+    public List<Data> dataList;
     private static int tag = 0;
     private Fragment fragment;
 
@@ -24,9 +25,14 @@ public class RVAdapter extends RecyclerView.Adapter implements View.OnClickListe
         return tag;
     }
 
-    public RVAdapter(List<Data> dataList, Fragment fragment) {
-        this.dataList = dataList;
+    public RVAdapter(Fragment fragment) {
+        this.dataList = new ArrayList<>();
         this.fragment = fragment;
+    }
+
+    public void setData(List<Data> dataList) {
+        this.dataList = dataList;
+        this.notifyDataSetChanged();
     }
 
 

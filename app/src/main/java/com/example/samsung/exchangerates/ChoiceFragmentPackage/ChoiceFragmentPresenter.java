@@ -14,7 +14,7 @@ import static com.example.samsung.exchangerates.DatabaseHelper.TABLE;
  * Created by Samsung on 25.10.2017.
  */
 
-public class Presenter {
+public class ChoiceFragmentPresenter {
 
     public void addToDb(String choice, SQLiteDatabase db) {
         if (choice != null) {
