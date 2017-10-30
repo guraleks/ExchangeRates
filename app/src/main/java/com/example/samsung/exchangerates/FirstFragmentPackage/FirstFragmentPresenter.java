@@ -40,6 +40,7 @@ public class FirstFragmentPresenter {
         };
     }
 
+
     private void setData() {
         view.renderData(getDataList());
     }

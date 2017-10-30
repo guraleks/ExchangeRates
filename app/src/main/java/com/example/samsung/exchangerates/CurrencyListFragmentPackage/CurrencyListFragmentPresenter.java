@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CurrencyListFragmentPresenter {
 
-    View view;
+    private View view;
 
     public CurrencyListFragmentPresenter(View view) {
         this.view = view;

@@ -25,12 +25,8 @@ import java.util.List;
 
 public class FirstFragment extends Fragment implements View{
 
-    android.view.View root;
-
-    private RecyclerView rv;
+    private android.view.View root;
     private RVAdapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private FirstFragmentPresenter presenter;
 
     public RecyclerView.Adapter getAdapter() {
         return adapter;
@@ -52,13 +48,13 @@ public class FirstFragment extends Fragment implements View{
     public void onViewCreated(android.view.View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        rv = root.findViewById(R.id.rv);
-        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        RecyclerView rv = root.findViewById(R.id.rv);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         rv.setLayoutManager(layoutManager);
         adapter = new RVAdapter(getFragmentManager().findFragmentById(R.id.fragmentContainer));
         rv.setAdapter(adapter);
 
-        presenter = new FirstFragmentPresenter(this);
+        FirstFragmentPresenter presenter = new FirstFragmentPresenter(this);
         presenter.initHandler();
         presenter.initDataFromDb();
     }

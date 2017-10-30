@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initDb() {
         DataBaseCache.getInstance().databaseHelper = new DatabaseHelper(getApplicationContext());
-        // открываем подключение
         DataBaseCache.getInstance().db = DataBaseCache.getInstance().databaseHelper.getReadableDatabase();
     }
 

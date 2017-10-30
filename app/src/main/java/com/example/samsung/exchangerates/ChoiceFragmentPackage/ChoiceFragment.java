@@ -53,7 +53,6 @@ public class ChoiceFragment extends Fragment {
                 //Действия при нажатии на кнопку "SAVE"
                 presenter.addToDataList(DataCache.getInstance().choice);
                 presenter.addToDb(DataCache.getInstance().choice, DataBaseCache.getInstance().db);
-
                 DataCache.getInstance().choice = null;
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.popBackStack();
